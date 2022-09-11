@@ -5,10 +5,10 @@
     "engines": {
         "node": "16.x"
     },
-    "main": "source/server.ts",
+    "main": "server.ts",
     "scripts": {
-        "dev": "nodemon source/server.ts",
-        "build": "ts-node-esm ./source/server.ts"
+        "dev": "nodemon server.ts",
+        "build": "ts-node-esm server.ts"
     },
     "author": "",
     "license": "ISC",
