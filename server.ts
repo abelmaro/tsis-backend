@@ -3,7 +3,7 @@ import routes from './source/routes/scrap';
 
 const router = express();
 
-router.use('/', routes);
+router.use('/api', routes);
 
 const PORT = process.env.PORT ?? 6060;
 router.listen(PORT, () => console.log(`Server run on port ${PORT}`));
