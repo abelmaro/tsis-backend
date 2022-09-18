@@ -75,7 +75,7 @@ const scrapGoogleImages = async (query: string) => {
 
 const getSongInfo = async (req: Request, res: Response) => {
     let query = req.params.searchQuery;
-    
+
     console.info(`Searching for ${query}...`);
 
     let url = getPageUrl(query, PageCodes.shazam)
@@ -115,6 +115,8 @@ const getSongInfo = async (req: Request, res: Response) => {
     return res.send(json);
 }
 
+function homeResponse(req: Request, res: Response) {
+    return res.send({ response: "Hi!" })
+}
 
-
-export default { getSongInfo };
+export default { getSongInfo, homeResponse };
