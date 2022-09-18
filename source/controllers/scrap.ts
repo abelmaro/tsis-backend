@@ -1,17 +1,20 @@
 import axios from 'axios';
 import { Request, Response } from 'express';
-import puppeteer from "puppeteer"
+// import puppeteer from "puppeteer"
 import PageCodes from '../constants/PageCodes';
 import { SongInfoInterface } from '../models/SongInfoInterface';
 import { getLyrics, getPageUrl, getSongPreview } from '../utils/codeHelper';
+import chromium from 'chrome-aws-lambda';
 
-async function getBrowser(): Promise<puppeteer.Browser> {
+async function getBrowser() {
     console.info("Starting browser...")
-    return await puppeteer.launch({
+    return await chromium.puppeteer.launch({
+        args: [...chromium.args, "--hide-scrollbars", "--disable-web-security"],
+        defaultViewport: chromium.defaultViewport,
+        executablePath: await chromium.executablePath,
         headless: true,
-        args: ["--no-sandbox", "--disable-setuid-sandbox"],
-        'ignoreHTTPSErrors': true
-    });
+        ignoreHTTPSErrors: true,
+      })
 }
 
 const scrapGoogleImages = async (query: string) => {
